@@ -1,0 +1,25 @@
+New Quote Request Received!
+
+A new quote request has been submitted through your website. Here are the details:
+
+Customer Information:
+Name: {{from_name}}
+Email: {{from_email}}
+Phone: {{phone_number}}
+
+{{#if product_name}}
+Product of Interest:
+Product Name: {{product_name}}
+Notes/Requirements: {{notes}}
+{{/if}}
+
+{{#if custom_project_description}}
+Custom Project Description:
+{{custom_project_description}}
+{{/if}}
+
+Please respond to the customer at your earliest convenience. You can reply directly to this email to contact {{from_name}}.
+
+Best regards,
+Your Website Team
+This request was submitted via your website's quote form.

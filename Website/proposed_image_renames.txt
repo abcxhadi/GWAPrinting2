@@ -1,0 +1,76 @@
+# Proposed Image Renames
+
+This is a proposed mapping of your current image files in `public/images` to the desired slug-based filenames. Please review this list carefully. If a mapping is incorrect or missing, please let me know.
+
+Once you confirm, I will generate the `mv` commands to rename the files.
+
+**Format: `Current Filename` -> `Desired Filename`**
+
+---
+
+**Business Essentials**
+- `business-cards.jpg` -> `business-cards.jpg`
+- `pvc__nfc_card__black-AVLJVZkDozSrx5Xq.avif` -> `pvcnfc-cards.jpg`
+- `273-2737138_letterheads-png-download-letterheads-transparent-png.png` -> `letterheads.jpg`
+- `Receipt-Voucher-English-Arabic-01.jpg` -> `receipt-vouchers.jpg`
+- `Postage-Stamp-PNG-Picture.png` -> `stamps.jpg`
+- `uniform.png` -> `uniforms.jpg`
+- `name-badges.png` -> `name-badges.jpg`
+- `(No clear match for "Self Ink Stamp")`
+
+**Cards & Invitations**
+- `birthday-card.webp` -> `birthday-cards.jpg`
+- `pngtree-elegant-brown-wedding-invitation-card-template-with-flower-bouquet-image_2049820.png` -> `invitation-cards.jpg`
+- `Greeting-Card-PNG-Transparent-Image.png` -> `greeting-cards.jpg`
+
+**Marketing Materials**
+- `sticker-header.png` -> `stickers-labels.jpg`
+- `570-5700241_brochures-and-flyers-flyer-and-brochure-png-transparent.jpg` -> `flyers-brochures.jpg`
+- `Eco-Paper-Bag-PNG-Image.png` -> `paper-bags.jpg`
+- `Backlit-Flex-Printing.jpg` -> `flex-printing.jpg`
+
+**Packaging Solutions**
+- `Eco-friendly-packaging-1024x683.png` -> `paper-packaging.jpg` (Ambiguous: could also be "eco-packaging")
+- `Boxes-PNG-Clipart.png` -> `boxes.jpg`
+- `Pollast_cMailers-Black-1024x1024_1200x.webp` -> `mailers.jpg`
+- `custom-boxes-2.png` -> `specialty-boxes.jpg` (Ambiguous: could be other boxes)
+- `accessories.png` -> `accessories.jpg`
+- `Eco-friendly-packaging-1024x683.png` -> `eco-packaging.jpg` (Ambiguous: could also be "paper-packaging")
+
+**Apparel & Accessories**
+- `Blank-T-Shirt-PNG-Image-Transparent.png` -> `t-shirts.jpg`
+- `sweater-shirt-hoodie-isolated-png.png` -> `hoodies.jpg`
+- `School-Bag-PNG-Picture.png` -> `bags.jpg`
+- `labels.jpg` -> `labels.jpg`
+- `caps.png` -> `caps.jpg`
+- `(No clear match for "Screen Printing")`
+
+**Gifts & Promotional Items**
+- `pens n diaries.png` -> `pens-diaries.jpg`
+- `(No clear match for "Drinkware")`
+- `100-1001680_custom-lanyard-sample-1-lanyards-png.png` -> `lanyards.jpg`
+- `pngtree-elegant-desk-setup-with-modern-stationery-items-png-image_19524466.png` -> `desk-items.jpg`
+- `calendars_printing_services_mumbai_india_01.png` -> `calendars.jpg`
+- `(No clear match for "Mementos & Prizes")`
+- `(No clear match for "Engraving")`
+
+**Signage & Event Displays**
+- `signage and signboard.avif` -> `signboard-signage.jpg`
+- `Name-Plates-Printing-Dubai.jpg` -> `nameplate.jpg`
+- `lightbox signboard.png` -> `lightbox-signage.jpg`
+- `business-roll-up-display-standee-presentation-purpose_1017-31432.avif` -> `self-standing.jpg` (Ambiguous: could also be "rollup-standees")
+- `direction signboard.webp` -> `direction-signage.jpg`
+- `flags.png` -> `flags.jpg`
+- `business-roll-up-display-standee-presentation-purpose_1017-31432.avif` -> `rollup-standees.jpg` (Ambiguous: could also be "self-standing")
+- `Backdrop_Events_Marketing_Materials.jpg` -> `backdrop-signage.jpg`
+- `events-stand-design-in-uae.png` -> `exhibition-events.jpg`
+- `shell-scheme-exhibition-booth-mockup_797303-891.avif` -> `shell-scheme-booths.jpg`
+- `(No clear match for "Event Props")`
+- `foamboards.webp` -> `foam-boards.jpg`
+- `office-branding.jpg` -> `office-branding.jpg`
+- `(No clear match for "Wallpaper")`
+- `vehicle branding.webp` -> `vehicle-branding.jpg`
+
+---
+
+Please review this carefully and let me know if any of the proposed renames are incorrect or if you have a better suggestion for the unmatched files.
