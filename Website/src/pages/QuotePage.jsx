@@ -5,9 +5,9 @@ import { sampleProducts } from "../data/products";
 import emailjs from '@emailjs/browser';
 
 // EmailJS Configuration
-const EMAILJS_SERVICE_ID = "service_govxl02";
-const EMAILJS_TEMPLATE_ID = "template_quote_form"; // User needs to create this template in EmailJS
-const EMAILJS_PUBLIC_KEY = "ygCYJNG_oj_tRdSKb";
+const EMAILJS_SERVICE_ID = "service_fniqcf4";
+const EMAILJS_TEMPLATE_ID = "template_bcgx2x8"; // User needs to create this template in EmailJS
+const EMAILJS_PUBLIC_KEY = "TSXIOq0SycZByma_r";
 
 emailjs.init(EMAILJS_PUBLIC_KEY);
 

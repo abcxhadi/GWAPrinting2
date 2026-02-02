@@ -33,7 +33,7 @@ export function ContactPage() {
                       Email
                     </p>
                     <p className="font-mono text-gray-300 text-sm">
-                      info@galaxyworld.com
+                      gw.advt@gmail.com
                     </p>
                   </div>
                 </div>
@@ -47,7 +47,7 @@ export function ContactPage() {
                       Phone
                     </p>
                     <p className="font-mono text-gray-300 text-sm">
-                      +971 XX XXX XXXX
+                      +971 55 532 5496
                     </p>
                   </div>
                 </div>
