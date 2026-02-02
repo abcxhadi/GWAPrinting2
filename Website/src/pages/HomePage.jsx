@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ChevronDown, Sparkles, Zap, ArrowRight } from "lucide-react";
 import { categories } from "../data/products";
 import { AnimatedCounter } from "../components/AnimatedCounter";
+import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
 
 export function HomePage() {
-  const [statsVisible, setStatsVisible] = useState(false);
   const navigate = useNavigate();
+  const [statsRef, statsVisible] = useIntersectionObserver({
+    threshold: 0.1,
+    rootMargin: "0px 0px -100px 0px",
+  });
 
   const handleCategoryClick = (categoryId) => {
     navigate("/products", { state: { selectedCategory: categoryId } });
@@ -179,8 +183,8 @@ export function HomePage() {
       </div>
 
       <div
+        ref={statsRef}
         className="bg-indie-cream py-24 border-t-8 border-black"
-        onMouseEnter={() => setStatsVisible(true)}
       >
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-16">

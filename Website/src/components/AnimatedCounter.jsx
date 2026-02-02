@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export function AnimatedCounter({ end, duration = 2000, visible }) {
+export function AnimatedCounter({ end, duration = 1500, visible }) {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
