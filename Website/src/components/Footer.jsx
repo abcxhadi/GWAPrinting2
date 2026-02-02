@@ -16,7 +16,7 @@ export function Footer() {
               </div>
             </div>
             <p className="font-mono text-gray-400 text-sm leading-relaxed">
-              Underground printing
+              printing
               <br />
               for independent minds
             </p>
