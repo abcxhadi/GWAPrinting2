@@ -22,17 +22,11 @@ export function Navbar({ scrolled }) {
             onClick={handleLinkClick}
             className="group flex items-center space-x-3 transition-all hover:scale-105"
           >
-            <div className="text-4xl transform group-hover:rotate-12 transition-transform">
-              🌌
-            </div>
-            <div>
-              <div className="font-display text-2xl text-black tracking-wider">
-                GALAXY WORLD
-              </div>
-              <div className="font-mono text-[10px] text-gray-600 tracking-widest -mt-1">
-                // PRINT STUDIO
-              </div>
-            </div>
+            <img
+              src="/logo.jpg"
+              alt="Galaxy World Logo"
+              className="h-12 w-12 rounded-full object-cover"
+            />
           </Link>
 
           <div className="hidden md:flex items-center space-x-8">
