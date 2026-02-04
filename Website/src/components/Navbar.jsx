@@ -23,7 +23,7 @@ export function Navbar({ scrolled }) {
             className="group flex items-center space-x-3 transition-all hover:scale-105"
           >
             <img
-              src="/logo.jpg"
+              src="/logo.png"
               alt="Galaxy World Logo"
               className="h-12 w-12 rounded-full object-cover"
             />
