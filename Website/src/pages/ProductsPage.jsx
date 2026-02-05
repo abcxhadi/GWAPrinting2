@@ -9,8 +9,14 @@ export function ProductsPage() {
   const [selectedCategory, setSelectedCategory] = useState(
     location.state?.selectedCategory || "all",
   );
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 9;
   // This is a placeholder for future functionality, as the detail page was not implemented
   const [selectedProduct, setSelectedProduct] = useState(null);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedCategory]);
 
   useEffect(() => {
     if (location.state?.selectedCategory) {
@@ -27,6 +33,16 @@ export function ProductsPage() {
       ? sampleProducts
       : sampleProducts.filter((p) => p.category === selectedCategory);
   const currentCategory = categories.find((c) => c.id === selectedCategory);
+
+  // Pagination logic
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = filteredProducts.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct,
+  );
+
+  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
 
   return (
     <div className="pt-20 min-h-screen bg-indie-cream">
@@ -92,7 +108,7 @@ export function ProductsPage() {
 
           <div className="flex-1">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredProducts.map((product, index) => (
+              {currentProducts.map((product, index) => (
                 <div
                   key={product.id}
                   className="group bg-white border-4 border-black hover:border-cyan-500 overflow-hidden transition-all duration-300 shadow-[6px_6px_0_rgba(0,0,0,1)] hover:shadow-[8px_8px_0_rgba(0,217,255,1)] hover:-translate-y-1"
@@ -152,6 +168,38 @@ export function ProductsPage() {
                 </div>
               ))}
             </div>
+
+            {totalPages > 1 && (
+              <div className="flex justify-center items-center mt-12 space-x-2">
+                <button
+                  onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                  disabled={currentPage === 1}
+                  className="px-4 py-2 bg-black text-white font-mono uppercase text-sm font-bold border-2 border-black hover:bg-cyan-500 hover:text-black transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  Previous
+                </button>
+                {[...Array(totalPages)].map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentPage(index + 1)}
+                    className={`px-4 py-2 font-mono uppercase text-sm font-bold border-2 border-black ${
+                      currentPage === index + 1
+                        ? "bg-cyan-400 text-black shadow-[4px_4px_0_rgba(0,0,0,1)]"
+                        : "bg-white text-gray-700 hover:border-black"
+                    }`}
+                  >
+                    {index + 1}
+                  </button>
+                ))}
+                <button
+                  onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+                  disabled={currentPage === totalPages}
+                  className="px-4 py-2 bg-black text-white font-mono uppercase text-sm font-bold border-2 border-black hover:bg-cyan-500 hover:text-black transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  Next
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
