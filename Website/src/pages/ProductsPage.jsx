@@ -307,7 +307,7 @@ export function ProductsPage() {
                   </button>
 
                   {/* Render intermediate subcategories for top-level categories */}
-                  {(selectedCategory === topCat.id || topCat.subcategories?.some(sub => sub.id === selectedCategory || sub.products?.some(p => p.id === selectedCategory))) && (
+                  {(topCat.id === "offset-printed-products" || selectedCategory === topCat.id || topCat.subcategories?.some(sub => sub.id === selectedCategory || sub.products?.some(p => p.id === selectedCategory))) && (
                     <div className="ml-4 border-l-2 border-gray-300 pl-4">
                       {topCat.subcategories?.map((intermediateCat) => (
                         <div key={intermediateCat.id} className="mb-2">
