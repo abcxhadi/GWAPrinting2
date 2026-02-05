@@ -6,23 +6,34 @@ import { categories, sampleProducts } from "../data/products";
 export function ProductsPage() {
   const location = useLocation();
   const navigate = useNavigate();
-  const [selectedCategory, setSelectedCategory] = useState(
-    location.state?.selectedCategory || "all",
-  );
-  const [currentPage, setCurrentPage] = useState(1);
+
+  const queryParams = new URLSearchParams(location.search);
+  const initialCategory = queryParams.get("category") || "all";
+  const initialPage = parseInt(queryParams.get("page") || "1", 10);
+
+  const [selectedCategory, setSelectedCategory] = useState(initialCategory);
+  const [currentPage, setCurrentPage] = useState(initialPage);
   const productsPerPage = 9;
   // This is a placeholder for future functionality, as the detail page was not implemented
   const [selectedProduct, setSelectedProduct] = useState(null);
 
   useEffect(() => {
-    setCurrentPage(1);
-  }, [selectedCategory]);
-
-  useEffect(() => {
-    if (location.state?.selectedCategory) {
-      setSelectedCategory(location.state.selectedCategory);
+    const params = new URLSearchParams();
+    if (selectedCategory !== "all") {
+      params.set("category", selectedCategory);
     }
-  }, [location.state]);
+    if (currentPage !== 1) {
+      params.set("page", currentPage.toString());
+    }
+    navigate({ search: params.toString() }, { replace: true });
+  }, [selectedCategory, currentPage, navigate]);
+
+  // Remove the old useEffect that was handling location.state, as URL is now canonical
+  // useEffect(() => {
+  //   if (location.state?.selectedCategory) {
+  //     setSelectedCategory(location.state.selectedCategory);
+  //   }
+  // }, [location.state]);
 
   const handleProductClick = (product) => {
     navigate(`/quote?product=${encodeURIComponent(product.name)}`);
@@ -77,7 +88,10 @@ export function ProductsPage() {
               </h3>
 
               <button
-                onClick={() => setSelectedCategory("all")}
+                onClick={() => {
+                  setSelectedCategory("all");
+                  setCurrentPage(1);
+                }}
                 className={`font-mono w-full text-left px-4 py-3 mb-3 transition-all font-bold uppercase text-sm border-2 ${
                   selectedCategory === "all"
                     ? "bg-cyan-400 border-black text-black shadow-[4px_4px_0_rgba(0,0,0,1)]"
@@ -90,7 +104,10 @@ export function ProductsPage() {
               {categories.map((cat) => (
                 <button
                   key={cat.id}
-                  onClick={() => setSelectedCategory(cat.id)}
+                  onClick={() => {
+                    setSelectedCategory(cat.id);
+                    setCurrentPage(1);
+                  }}
                   className={`font-mono w-full text-left px-4 py-3 mb-3 transition-all font-bold text-sm border-2 ${
                     selectedCategory === cat.id
                       ? "bg-cyan-400 border-black text-black shadow-[4px_4px_0_rgba(0,0,0,1)]"
