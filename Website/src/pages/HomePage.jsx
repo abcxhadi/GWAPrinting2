@@ -28,9 +28,9 @@ export function HomePage() {
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 text-center py-32">
-          <div className="inline-flex items-center space-x-3 bg-orange-500/20 border-2 border-orange-500/50 px-6 py-3 mb-8 backdrop-blur-sm transform -rotate-2">
-            <Sparkles className="w-5 h-5 text-orange-500" />
-            <span className="text-orange-500 font-bold text-sm tracking-wider font-mono">
+          <div className="inline-flex items-center space-x-3 bg-orange-500/20 border-2 border-purple px-6 py-3 mb-8 backdrop-blur-sm transform -rotate-2">
+            <Sparkles className="w-5 h-5 text-white" />
+            <span className="text-white font-bold text-xl tracking-wider font-mono">
               19+ YEARS // PRINTING
             </span>
           </div>
@@ -41,17 +41,17 @@ export function HomePage() {
               VISION
             </span>
             <span className="text-white block text-5xl md:text-7xl mt-4">
-              INTO <span className="text-orange-500 scribble">REALITY</span>
+              INTO <span className="text-black scribble">REALITY</span>
             </span>
           </h1>
 
           <p
-            className="font-mono text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto 
+            className="font-mono text-xl md:text-2xl text-white mb-12 max-w-3xl mx-auto 
 │    leading-relaxed"
           >
             From everyday prints to large-scale exhibition
             <br />
-            <span className="text-cyan-400">
+            <span className="text-white">
               we deliver print solutions that stand out.
             </span>
           </p>
@@ -75,7 +75,7 @@ export function HomePage() {
         </div>
 
         <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="text-orange-500 text-xs tracking-wider mb-2 font-mono">
+          <div className="text-white text-xs tracking-wider mb-2 font-mono">
             SCROLL
           </div>
           <ChevronDown className="w-8 h-8 text-orange-500 mx-auto" />
