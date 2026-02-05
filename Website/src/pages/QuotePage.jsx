@@ -24,7 +24,14 @@ export function QuotePage() {
     product: "",
     notes: "",
     customProject: "",
+    offsetPrintingType: "",
   });
+
+  const selectedProduct = sampleProducts.find(
+    (p) => p.name === formData.product,
+  );
+  const isOffsetProduct =
+    selectedProduct?.topCategoryId === "offset-printed-products";
 
   useEffect(() => {
     if (location.state?.initialTab) {
@@ -37,6 +44,12 @@ export function QuotePage() {
     }
   }, [location.state, location.search]);
 
+  useEffect(() => {
+    if (!isOffsetProduct && formData.offsetPrintingType) {
+      setFormData((prev) => ({ ...prev, offsetPrintingType: "" }));
+    }
+  }, [isOffsetProduct, formData.offsetPrintingType]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -45,6 +58,7 @@ export function QuotePage() {
       from_email: formData.email,
       phone_number: formData.phone,
       product_name: formData.product,
+      offset_printing_type: formData.offsetPrintingType,
       notes: formData.notes,
       custom_project_description: formData.customProject,
     };
@@ -67,6 +81,7 @@ export function QuotePage() {
           product: "",
           notes: "",
           customProject: "",
+          offsetPrintingType: "",
         });
         setTimeout(() => setFormSubmitted(false), 3000);
       })
@@ -159,6 +174,38 @@ export function QuotePage() {
                       placeholder="Quantity, size, materials, timeline..."
                     />
                   </div>
+                  {isOffsetProduct && (
+                    <div className="mb-6">
+                      <label className="font-mono block font-bold text-black mb-3 uppercase text-sm">
+                        Offset Printing Type
+                      </label>
+                      <select
+                        value={formData.offsetPrintingType}
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            offsetPrintingType: e.target.value,
+                          })
+                        }
+                        className="font-mono w-full border-4 border-black p-3 focus:border-cyan-500 focus:outline-none transition-colors"
+                        required
+                      >
+                        <option value="">Choose...</option>
+                        <option value="Individual Printing">
+                          Individual Printing
+                        </option>
+                        <option value="Group Sheet">Group Sheet</option>
+                      </select>
+                      <div className="mt-3 bg-indie-cream border-2 border-black p-3">
+                        <p className="font-mono text-xs text-black">
+                          Individual Printing: color grading accuracy 90%+, higher cost
+                        </p>
+                        <p className="font-mono text-xs text-black">
+                          Group Sheet: color grading accuracy 60–70%, lower cost
+                        </p>
+                      </div>
+                    </div>
+                  )}
                 </>
               ) : (
                 <div className="mb-6">
