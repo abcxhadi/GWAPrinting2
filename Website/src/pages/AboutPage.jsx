@@ -10,7 +10,7 @@ export function AboutPage() {
             ABOUT <span className="text-cyan-500 scribble">GALAXY WORLD</span>
           </h1>
           <h1 className="font-display text-5xl md:text-6xl font-bold text-black mb-4 tracking-wide">
-            15+ years of printing expertise
+            19+ years of printing expertise
           </h1>
         </div>
       </div>
@@ -18,7 +18,7 @@ export function AboutPage() {
       <div className="max-w-4xl mx-auto px-4 py-16">
         <div className="bg-white border-4 border-black p-10 shadow-[8px_8px_0_rgba(0,0,0,1)]">
           <p className="font-mono text-gray-700 leading-relaxed mb-8 text-base">
-            For over 15 years, Galaxy World has been a leader in specialized
+            For over 19 years, Galaxy World has been a leader in specialized
             printing. We're not just a print shop—we're your collaborators in
             bringing authentic visions to life with precision and expertise.
           </p>

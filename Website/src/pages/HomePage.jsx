@@ -31,7 +31,7 @@ export function HomePage() {
           <div className="inline-flex items-center space-x-3 bg-orange-500/20 border-2 border-orange-500/50 px-6 py-3 mb-8 backdrop-blur-sm transform -rotate-2">
             <Sparkles className="w-5 h-5 text-orange-500" />
             <span className="text-orange-500 font-bold text-sm tracking-wider font-mono">
-              15+ YEARS // DIY SPIRIT
+              19+ YEARS // PRINTING
             </span>
           </div>
 
@@ -189,7 +189,7 @@ export function HomePage() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
             {[
-              { value: 15, suffix: "+", label: "YEARS", icon: "🏆" },
+              { value: 19, suffix: "+", label: "YEARS", icon: "🏆" },
               { value: 5000, suffix: "+", label: "PROJECTS", icon: "✓" },
               { value: 98, suffix: "%", label: "SATISFACTION", icon: "★" },
             ].map((stat, index) => (
