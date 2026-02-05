@@ -446,11 +446,11 @@ export function ProductsPage() {
             </div>
 
             {totalPages > 1 && (
-              <div className="flex justify-center items-center mt-12 space-x-2">
+              <div className="flex flex-wrap justify-center items-center mt-12 gap-2">
                 <button
                   onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
                   disabled={currentPage === 1}
-                  className="px-4 py-2 bg-black text-white font-mono uppercase text-sm font-bold border-2 border-black hover:bg-cyan-500 hover:text-black transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="px-3 py-2 bg-black text-white font-mono uppercase text-xs md:text-sm font-bold border-2 border-black hover:bg-cyan-500 hover:text-black transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   Previous
                 </button>
@@ -458,7 +458,7 @@ export function ProductsPage() {
                   <button
                     key={index}
                     onClick={() => setCurrentPage(index + 1)}
-                    className={`px-4 py-2 font-mono uppercase text-sm font-bold border-2 border-black ${
+                    className={`px-3 py-2 font-mono uppercase text-xs md:text-sm font-bold border-2 border-black ${
                       currentPage === index + 1
                         ? "bg-cyan-400 text-black shadow-[4px_4px_0_rgba(0,0,0,1)]"
                         : "bg-white text-gray-700 hover:border-black"
@@ -470,7 +470,7 @@ export function ProductsPage() {
                 <button
                   onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
                   disabled={currentPage === totalPages}
-                  className="px-4 py-2 bg-black text-white font-mono uppercase text-sm font-bold border-2 border-black hover:bg-cyan-500 hover:text-black transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="px-3 py-2 bg-black text-white font-mono uppercase text-xs md:text-sm font-bold border-2 border-black hover:bg-cyan-500 hover:text-black transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   Next
                 </button>
