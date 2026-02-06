@@ -496,7 +496,9 @@ categories.forEach((topCategory) => {
           slugDir = "Table Mats";
         }
         const imageFileName = product.id; // Match exact filenames in public/images/offsetPrinting
-        const imagePath = `/images/offsetPrinting/${slugDir}/${imageFileName}.png`;
+        const imagePath = encodeURI(
+          `/images/offsetPrinting/${slugDir}/${imageFileName}.png`,
+        );
 
         sampleProducts.push({
           id: productId++,
