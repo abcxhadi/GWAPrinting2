@@ -257,7 +257,7 @@ export function HomePage() {
   };
 
   return (
-    <div className="pt-0">
+    <div className="pt-0 font-sans font-bold">
       <div className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#14A4E6] to-[#2F67EA]">
         <div className="absolute inset-0">
           <div className="absolute top-20 left-10 w-72 h-72 bg-cyan-500/20 rounded-full blur-3xl animate-pulse opacity-50"></div>

@@ -11,8 +11,8 @@ export default {
       },
       fontFamily: {
         display: ["Bebas Neue", "cursive"],
-        mono: ["Space Mono", "monospace"],
-        sans: ["Space Grotesk", "sans-serif"],
+        mono: ["Space Grotesk", "sans-serif"],
+        sans: ["Work Sans", "sans-serif"],
       },
     },
   },
