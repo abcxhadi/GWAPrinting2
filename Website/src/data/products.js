@@ -14,10 +14,10 @@ export const categories = [
         description: "Standard business cards",
         printingMethod: "offset",
         products: [
-          { id: "matt-lamination-350gsm", name: "Matt Lamination 350gsm" },
-          { id: "matt-lamination-400gsm", name: "Matt Lamination 400gsm" },
-          { id: "glossy-lamination-400gsm", name: "Glossy Lamination 400gsm" },
-          { id: "art-paper-(without-lamination)-400gsm", name: "Art Paper (Without Lamination) 400gsm" },
+          { id: "matt-lamination-350gsm", name: "Business Card - Matt Lamination 350gsm" },
+          { id: "matt-lamination-400gsm", name: "Business Card - Matt Lamination 400gsm" },
+          { id: "glossy-lamination-400gsm", name: "Business Card - Glossy Lamination 400gsm" },
+          { id: "art-paper-(without-lamination)-400gsm", name: "Business Card - Art Paper (Without Lamination) 400gsm" },
         ],
       },
       {
@@ -27,21 +27,21 @@ export const categories = [
         description: "Specialty business cards with unique finishes",
         printingMethod: "offset",
         products: [
-          { id: "rounded-corner-spot-uv-matt-lamination-400gsm", name: "Rounded Corner Spot UV Matt Lamination 400gsm" },
-          { id: "rounded-corner-matt-lamination-400gsm", name: "Rounded Corner Matt Lamination 400gsm" },
+          { id: "rounded-corner-spot-uv-matt-lamination-400gsm", name: "Business Card - Rounded Corner Spot UV Matt Lamination 400gsm" },
+          { id: "rounded-corner-matt-lamination-400gsm", name: "Business Card - Rounded Corner Matt Lamination 400gsm" },
           { id: "rounded-corner-spot-uv-velvet-lamination-760mic", name: "Rounded Corner Spot UV Velvet Lamination 760mic" },
-          { id: "spot-uv-matt-lamination-400gsm", name: "Spot UV Matt Lamination 400gsm" },
+          { id: "spot-uv-matt-lamination-400gsm", name: "Business Card - Spot UV Matt Lamination 400gsm" },
           { id: "rounded-corner-gold-foil-spot-uv-velvet-lamination-760mic", name: "Rounded Corner Gold Foil Spot UV Velvet Lamination 760mic" },
-          { id: "rounded-corner-glossy-lamination-400gsm", name: "Rounded Corner Glossy Lamination 400gsm" },
-          { id: "gold-foil-matt-lamination-400gsm", name: "Gold Foil Matt Lamination 400gsm" },
-          { id: "gold-foil-spot-uv-matt-lamination-400gsm", name: "Gold Foil Spot UV Matt Lamination 400gsm" },
-          { id: "rounded-corner-gold-foil-spot-uv-matt-lamination-400gsm", name: "Rounded Corner Gold Foil Spot UV Matt Lamination 400gsm" },
-          { id: "rounded-corner-pet-glossy-lamination-760mic", name: "Rounded Corner PET Glossy Lamination 760mic" },
-          { id: "custom-die-cut-matt-lamination-400gsm", name: "Custom Die Cut Matt Lamination 400gsm" },
-          { id: "custom-die-cut-spot-uv-matt-lamination-400gsm", name: "Custom Die Cut Spot UV Matt Lamination 400gsm" },
-          { id: "custom-die-cut-gold-foil-spot-uv-matt-lamination-400gsm", name: "Custom Die Cut Gold Foil Spot UV Matt Lamination 400gsm" },
-          { id: "rounded-corner-gold-foil-matt-lamination-400gsm", name: "Rounded Corner Gold Foil Matt Lamination 400gsm" },
-          { id: "rounded-corner-gold-foil-pet-glossy-lamination-760mic", name: "Rounded Corner Gold Foil PET Glossy Lamination 760mic" },
+          { id: "rounded-corner-glossy-lamination-400gsm", name: "Business Card - Rounded Corner Glossy Lamination 400gsm" },
+          { id: "gold-foil-matt-lamination-400gsm", name: "Business Card - Gold Foil Matt Lamination 400gsm" },
+          { id: "gold-foil-spot-uv-matt-lamination-400gsm", name: "Business Card - Gold Foil Spot UV Matt Lamination 400gsm" },
+          { id: "rounded-corner-gold-foil-spot-uv-matt-lamination-400gsm", name: "Business Card - Rounded Corner Gold Foil Spot UV Matt Lamination 400gsm" },
+          { id: "rounded-corner-pet-glossy-lamination-760mic", name: "Business Card - Rounded Corner PET Glossy Lamination 760mic" },
+          { id: "custom-die-cut-matt-lamination-400gsm", name: "Business Card - Custom Die Cut Matt Lamination 400gsm" },
+          { id: "custom-die-cut-spot-uv-matt-lamination-400gsm", name: "Business Card - Custom Die Cut Spot UV Matt Lamination 400gsm" },
+          { id: "custom-die-cut-gold-foil-spot-uv-matt-lamination-400gsm", name: "Business Card - Custom Die Cut Gold Foil Spot UV Matt Lamination 400gsm" },
+          { id: "rounded-corner-gold-foil-matt-lamination-400gsm", name: "Business Card - Rounded Corner Gold Foil Matt Lamination 400gsm" },
+          { id: "rounded-corner-gold-foil-pet-glossy-lamination-760mic", name: "Business Card - Rounded Corner Gold Foil PET Glossy Lamination 760mic" },
         ],
       },
       {
@@ -356,7 +356,6 @@ export const categories = [
           { id: "event-props", name: "Event Props", printingMethod: "other" },
           { id: "foam-boards", name: "Foam Boards", printingMethod: "other" },
           { id: "office-branding", name: "Office Branding", printingMethod: "other" },
-          { id: "wallpaper", name: "Wallpaper", printingMethod: "other" },
           { id: "vehicle-branding", name: "Vehicle Branding", printingMethod: "other" },
         ],
       },
@@ -601,8 +600,6 @@ categories.forEach((topCategory) => {
           imagePath = "/images/foam-boards.jpg";
         } else if (product.id === "office-branding") {
           imagePath = "/images/office-branding.jpg";
-        } else if (product.id === "wallpaper") {
-          imagePath = "/images/wallpaper.jpg";
         } else if (product.id === "vehicle-branding") {
           imagePath = "/images/vehicle-branding.jpg";
         }
@@ -628,7 +625,7 @@ categories.forEach((topCategory) => {
 // Data for Business Cards (Matt Lamination & Related)
 const businessCardMattLaminationPrices = [
   {
-    productName: "Matt Lamination 350gsm",
+    productName: "Business Card - Matt Lamination 350gsm",
     pricing: [
       {
         productCode: "SB-104",
@@ -649,7 +646,7 @@ const businessCardMattLaminationPrices = [
     ],
   },
   {
-    productName: "Matt Lamination 400gsm",
+    productName: "Business Card - Matt Lamination 400gsm",
     pricing: [
       {
         productCode: "SB-100",
@@ -662,7 +659,7 @@ const businessCardMattLaminationPrices = [
     ],
   },
   {
-    productName: "Rounded Corner Matt Lamination 400gsm",
+    productName: "Business Card - Rounded Corner Matt Lamination 400gsm",
     pricing: [
       {
         productCode: "PB-203",
@@ -675,7 +672,7 @@ const businessCardMattLaminationPrices = [
     ],
   },
   {
-    productName: "Glossy Lamination 400gsm",
+    productName: "Business Card - Glossy Lamination 400gsm",
     pricing: [
       {
         productCode: "SB-103",
@@ -688,7 +685,7 @@ const businessCardMattLaminationPrices = [
     ],
   },
   {
-    productName: "Rounded Corner Glossy Lamination 400gsm",
+    productName: "Business Card - Rounded Corner Glossy Lamination 400gsm",
     pricing: [
       {
         productCode: "PB-202",
@@ -701,7 +698,7 @@ const businessCardMattLaminationPrices = [
     ],
   },
   {
-    productName: "Art Paper (Without Lamination) 400gsm",
+    productName: "Business Card - Art Paper (Without Lamination) 400gsm",
     pricing: [
       {
         productCode: "SB-101",
@@ -714,7 +711,7 @@ const businessCardMattLaminationPrices = [
     ],
   },
   {
-    productName: "Spot UV Matt Lamination 400gsm",
+    productName: "Business Card - Spot UV Matt Lamination 400gsm",
     pricing: [
       {
         productCode: "SB-104/1",
@@ -735,7 +732,7 @@ const businessCardMattLaminationPrices = [
     ],
   },
   {
-    productName: "Rounded Corner Spot UV Matt Lamination 400gsm",
+    productName: "Business Card - Rounded Corner Spot UV Matt Lamination 400gsm",
     pricing: [
       {
         productCode: "PB-203/1",
@@ -752,7 +749,7 @@ const businessCardMattLaminationPrices = [
 // Data for Business Cards (Gold Foil & Spot UV Variants)
 const businessCardGoldFoilPrices = [
   {
-    productName: "Gold Foil Matt Lamination 400gsm",
+    productName: "Business Card - Gold Foil Matt Lamination 400gsm",
     pricing: [
       {
         productCode: "PB-213",
@@ -765,7 +762,7 @@ const businessCardGoldFoilPrices = [
     ],
   },
   {
-    productName: "Rounded Corner Gold Foil Matt Lamination 400gsm",
+    productName: "Business Card - Rounded Corner Gold Foil Matt Lamination 400gsm",
     pricing: [
       {
         productCode: "PB-213/1",
@@ -778,7 +775,7 @@ const businessCardGoldFoilPrices = [
     ],
   },
   {
-    productName: "Gold Foil Spot UV Matt Lamination 400gsm",
+    productName: "Business Card - Gold Foil Spot UV Matt Lamination 400gsm",
     pricing: [
       {
         productCode: "PB-214",
@@ -791,7 +788,7 @@ const businessCardGoldFoilPrices = [
     ],
   },
   {
-    productName: "Rounded Corner Gold Foil Spot UV Matt Lamination 400gsm",
+    productName: "Business Card - Rounded Corner Gold Foil Spot UV Matt Lamination 400gsm",
     pricing: [
       {
         productCode: "PB-215",
@@ -804,7 +801,7 @@ const businessCardGoldFoilPrices = [
     ],
   },
   {
-    productName: "Custom Die Cut Gold Foil Spot UV Matt Lamination 400gsm",
+    productName: "Business Card - Custom Die Cut Gold Foil Spot UV Matt Lamination 400gsm",
     pricing: [
       {
         productCode: "PB-216",

@@ -5,6 +5,246 @@ import { categories } from "../data/products";
 import { AnimatedCounter } from "../components/AnimatedCounter";
 import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
 
+const galleryItems = [
+  { type: "video", src: "/images/gallery/1.mp4" },
+  { type: "image", src: "/images/gallery/2.jpeg" },
+  { type: "image", src: "/images/gallery/3.jpeg" },
+  { type: "image", src: "/images/gallery/4.jpeg" },
+  { type: "image", src: "/images/gallery/5.jpeg" },
+  { type: "image", src: "/images/gallery/6.jpeg" },
+  { type: "image", src: "/images/gallery/7.jpeg" },
+  { type: "image", src: "/images/gallery/8.jpeg" },
+  { type: "image", src: "/images/gallery/9.jpeg" },
+  { type: "image", src: "/images/gallery/10.jpeg" },
+  {
+    type: "image",
+    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.21 (1).jpeg",
+  },
+  {
+    type: "image",
+    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.23 (1).jpeg",
+  },
+  {
+    type: "image",
+    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.23.jpeg",
+  },
+  {
+    type: "image",
+    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.24.jpeg",
+  },
+  {
+    type: "image",
+    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.25.jpeg",
+  },
+  {
+    type: "image",
+    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.26 (1).jpeg",
+  },
+  {
+    type: "image",
+    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.26.jpeg",
+  },
+  {
+    type: "image",
+    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.30 (1).jpeg",
+  },
+  {
+    type: "image",
+    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.30.jpeg",
+  },
+  {
+    type: "image",
+    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.31.jpeg",
+  },
+  {
+    type: "image",
+    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.32 (1).jpeg",
+  },
+  {
+    type: "image",
+    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.32 (2).jpeg",
+  },
+  {
+    type: "image",
+    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.32.jpeg",
+  },
+  {
+    type: "image",
+    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.33 (1).jpeg",
+  },
+  {
+    type: "image",
+    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.34.jpeg",
+  },
+  {
+    type: "image",
+    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.35 (1).jpeg",
+  },
+  {
+    type: "image",
+    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.35 (2).jpeg",
+  },
+  {
+    type: "image",
+    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.36.jpeg",
+  },
+  {
+    type: "image",
+    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.37 (1).jpeg",
+  },
+  {
+    type: "image",
+    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.37.jpeg",
+  },
+  {
+    type: "image",
+    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.38.jpeg",
+  },
+  {
+    type: "image",
+    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.39 (1).jpeg",
+  },
+  {
+    type: "image",
+    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.39.jpeg",
+  },
+  {
+    type: "image",
+    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.40.jpeg",
+  },
+  {
+    type: "image",
+    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.41.jpeg",
+  },
+  {
+    type: "image",
+    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.42.jpeg",
+  },
+  {
+    type: "image",
+    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.43.jpeg",
+  },
+  {
+    type: "image",
+    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.44.jpeg",
+  },
+  {
+    type: "image",
+    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.45.jpeg",
+  },
+  {
+    type: "image",
+    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.48.jpeg",
+  },
+  {
+    type: "image",
+    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.50.jpeg",
+  },
+  {
+    type: "image",
+    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.51 (1).jpeg",
+  },
+  {
+    type: "image",
+    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.51.jpeg",
+  },
+  {
+    type: "image",
+    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.52 (1).jpeg",
+  },
+  {
+    type: "image",
+    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.52.jpeg",
+  },
+  {
+    type: "image",
+    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.53.jpeg",
+  },
+  {
+    type: "image",
+    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.54.jpeg",
+  },
+  {
+    type: "image",
+    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.56.jpeg",
+  },
+  {
+    type: "image",
+    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.57 (1).jpeg",
+  },
+  {
+    type: "image",
+    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.57.jpeg",
+  },
+  {
+    type: "image",
+    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.58 (1).jpeg",
+  },
+  {
+    type: "image",
+    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.58.jpeg",
+  },
+  {
+    type: "video",
+    src: "/images/gallery/WhatsApp Video 2026-02-06 at 10.58.20.mp4",
+  },
+  {
+    type: "video",
+    src: "/images/gallery/WhatsApp Video 2026-02-06 at 10.58.22.mp4",
+  },
+  {
+    type: "video",
+    src: "/images/gallery/WhatsApp Video 2026-02-06 at 10.58.25.mp4",
+  },
+  {
+    type: "video",
+    src: "/images/gallery/WhatsApp Video 2026-02-06 at 10.58.26.mp4",
+  },
+  {
+    type: "video",
+    src: "/images/gallery/WhatsApp Video 2026-02-06 at 10.58.28.mp4",
+  },
+  {
+    type: "video",
+    src: "/images/gallery/WhatsApp Video 2026-02-06 at 10.58.29.mp4",
+  },
+  {
+    type: "video",
+    src: "/images/gallery/WhatsApp Video 2026-02-06 at 10.58.30.mp4",
+  },
+  {
+    type: "video",
+    src: "/images/gallery/WhatsApp Video 2026-02-06 at 10.58.31.mp4",
+  },
+  {
+    type: "video",
+    src: "/images/gallery/WhatsApp Video 2026-02-06 at 10.58.36.mp4",
+  },
+  {
+    type: "video",
+    src: "/images/gallery/WhatsApp Video 2026-02-06 at 10.58.38 (1).mp4",
+  },
+  {
+    type: "video",
+    src: "/images/gallery/WhatsApp Video 2026-02-06 at 10.58.38.mp4",
+  },
+  {
+    type: "video",
+    src: "/images/gallery/WhatsApp Video 2026-02-06 at 10.58.40.mp4",
+  },
+  {
+    type: "video",
+    src: "/images/gallery/WhatsApp Video 2026-02-06 at 10.58.42.mp4",
+  },
+  {
+    type: "video",
+    src: "/images/gallery/WhatsApp Video 2026-02-06 at 10.58.47.mp4",
+  },
+  {
+    type: "video",
+    src: "/images/gallery/WhatsApp Video 2026-02-06 at 10.58.50.mp4",
+  },
+];
 export function HomePage() {
   const navigate = useNavigate();
   const [statsRef, statsVisible] = useIntersectionObserver({
@@ -41,7 +281,7 @@ export function HomePage() {
               VISION
             </span>
             <span className="text-white block text-5xl md:text-7xl mt-4">
-              INTO <span className="text-black scribble">REALITY</span>
+              INTO <span className="text-cyan-400 scribble">REALITY</span>
             </span>
           </h1>
 
@@ -121,6 +361,50 @@ export function HomePage() {
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-2 transition-transform" />
                 </div>
               </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-white py-24 border-t-8 border-black">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="font-display text-5xl md:text-6xl font-bold text-black mb-4 tracking-wide">
+              GALLERY <span className="text-orange-500 scribble">SHOWCASE</span>
+            </h2>
+            <p className="font-mono text-gray-700 text-lg">
+              A glimpse of finished work, materials, and in‑process production
+            </p>
+          </div>
+
+          <div className="columns-1 sm:columns-2 lg:columns-3 gap-6">
+            {galleryItems.map((item, index) => (
+              <div
+                key={`${item.type}-${index}`}
+                className="mb-6 break-inside-avoid border-4 border-black bg-indie-cream shadow-[6px_6px_0_rgba(0,0,0,1)]"
+              >
+                {item.type === "image" ? (
+                  <img
+                    src={item.src}
+                    alt="Gallery item"
+                    loading="lazy"
+                    className="w-full h-auto block"
+                  />
+                ) : (
+                  <video
+                    src={item.src}
+                    muted
+                    loop
+                    autoPlay
+                    playsInline
+                    preload="metadata"
+                    onLoadedMetadata={(e) => {
+                      e.currentTarget.playbackRate = 2;
+                    }}
+                    className="w-full h-auto block"
+                  />
+                )}
+              </div>
             ))}
           </div>
         </div>

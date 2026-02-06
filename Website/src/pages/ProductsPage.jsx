@@ -89,6 +89,17 @@ export function ProductsPage() {
     return map;
   }, []);
 
+  const categoryDescriptionById = useMemo(() => {
+    const map = new Map();
+    categories.forEach((cat) => {
+      if (cat.description) map.set(cat.id, cat.description);
+      cat.subcategories?.forEach((sub) => {
+        if (sub.description) map.set(sub.id, sub.description);
+      });
+    });
+    return map;
+  }, []);
+
   const searchOptions = useMemo(() => {
     const options = [{ id: "all", label: "All Products" }];
     categories.forEach((cat) => {
@@ -421,6 +432,11 @@ export function ProductsPage() {
                     <h3 className="font-display text-xl font-bold text-black mb-2 group-hover:text-cyan-500 transition-colors tracking-wide">
                       {product.name.toUpperCase()}
                     </h3>
+                    {categoryDescriptionById.get(product.intermediateCategoryId) && (
+                      <p className="font-mono text-[10px] text-gray-600 mb-2 uppercase tracking-wide">
+                        {categoryDescriptionById.get(product.intermediateCategoryId)}
+                      </p>
+                    )}
 
                     {product.price && (
                       <p className="font-mono text-xs text-black mb-2">
