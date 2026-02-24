@@ -6,7 +6,10 @@ import { AnimatedCounter } from "../components/AnimatedCounter";
 import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
 
 const galleryItems = [
-  { type: "video", src: "/images/gallery/1.mp4" },
+  {
+    type: "video",
+    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.21 (1).jpeg",
+  },
   { type: "image", src: "/images/gallery/2.jpeg" },
   { type: "image", src: "/images/gallery/3.jpeg" },
   { type: "image", src: "/images/gallery/4.jpeg" },
