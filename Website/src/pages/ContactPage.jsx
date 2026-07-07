@@ -47,7 +47,7 @@ export function ContactPage() {
                       Phone
                     </p>
                     <p className="font-mono text-gray-300 text-sm">
-                      +971 55 532 5496
+                      +971 55 534 4596
                     </p>
                   </div>
                 </div>
@@ -62,19 +62,21 @@ export function ContactPage() {
               <div className="space-y-4">
                 <div className="flex justify-between items-center py-3 border-b-2 border-black">
                   <span className="font-mono text-black font-bold uppercase text-sm">
-                    Mon - Fri
+                    Mon-Thu, Sat
                   </span>
-                  <span className="font-mono text-cyan-500 font-bold">
-                    9AM - 6PM
-                  </span>
+                  <div className="font-mono text-cyan-500 font-bold text-right">
+                    <div>9AM - 2PM</div>
+                    <div>3PM - 8:30PM</div>
+                  </div>
                 </div>
                 <div className="flex justify-between items-center py-3 border-b-2 border-black">
                   <span className="font-mono text-black font-bold uppercase text-sm">
-                    Saturday
+                    Friday
                   </span>
-                  <span className="font-mono text-cyan-500 font-bold">
-                    10AM - 4PM
-                  </span>
+                  <div className="font-mono text-cyan-500 font-bold text-right">
+                    <div>9AM - 12PM</div>
+                    <div>3PM - 8:30PM</div>
+                  </div>
                 </div>
                 <div className="flex justify-between items-center py-3">
                   <span className="font-mono text-black font-bold uppercase text-sm">
