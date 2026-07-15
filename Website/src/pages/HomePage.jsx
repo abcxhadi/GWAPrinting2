@@ -1,258 +1,26 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ChevronDown, Sparkles, Zap, ArrowRight } from "lucide-react";
+import { ChevronDown, Sparkles, Zap, ArrowRight, Camera } from "lucide-react";
 import { categories } from "../data/products";
+import { galleryItems } from "../data/gallery";
 import { AnimatedCounter } from "../components/AnimatedCounter";
 import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
 
-const galleryItems = [
-  {
-    type: "video",
-    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.21 (1).jpeg",
-  },
-  { type: "image", src: "/images/gallery/2.jpeg" },
-  { type: "image", src: "/images/gallery/3.jpeg" },
-  { type: "image", src: "/images/gallery/4.jpeg" },
-  { type: "image", src: "/images/gallery/5.jpeg" },
-  { type: "image", src: "/images/gallery/6.jpeg" },
-  { type: "image", src: "/images/gallery/7.jpeg" },
-  { type: "image", src: "/images/gallery/8.jpeg" },
-  { type: "image", src: "/images/gallery/9.jpeg" },
-  { type: "image", src: "/images/gallery/10.jpeg" },
-  {
-    type: "image",
-    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.21 (1).jpeg",
-  },
-  {
-    type: "image",
-    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.23 (1).jpeg",
-  },
-  {
-    type: "image",
-    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.23.jpeg",
-  },
-  {
-    type: "image",
-    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.24.jpeg",
-  },
-  {
-    type: "image",
-    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.25.jpeg",
-  },
-  {
-    type: "image",
-    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.26 (1).jpeg",
-  },
-  {
-    type: "image",
-    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.26.jpeg",
-  },
-  {
-    type: "image",
-    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.30 (1).jpeg",
-  },
-  {
-    type: "image",
-    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.30.jpeg",
-  },
-  {
-    type: "image",
-    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.31.jpeg",
-  },
-  {
-    type: "image",
-    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.32 (1).jpeg",
-  },
-  {
-    type: "image",
-    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.32 (2).jpeg",
-  },
-  {
-    type: "image",
-    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.32.jpeg",
-  },
-  {
-    type: "image",
-    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.33 (1).jpeg",
-  },
-  {
-    type: "image",
-    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.34.jpeg",
-  },
-  {
-    type: "image",
-    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.35 (1).jpeg",
-  },
-  {
-    type: "image",
-    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.35 (2).jpeg",
-  },
-  {
-    type: "image",
-    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.36.jpeg",
-  },
-  {
-    type: "image",
-    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.37 (1).jpeg",
-  },
-  {
-    type: "image",
-    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.37.jpeg",
-  },
-  {
-    type: "image",
-    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.38.jpeg",
-  },
-  {
-    type: "image",
-    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.39 (1).jpeg",
-  },
-  {
-    type: "image",
-    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.39.jpeg",
-  },
-  {
-    type: "image",
-    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.40.jpeg",
-  },
-  {
-    type: "image",
-    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.41.jpeg",
-  },
-  {
-    type: "image",
-    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.42.jpeg",
-  },
-  {
-    type: "image",
-    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.43.jpeg",
-  },
-  {
-    type: "image",
-    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.44.jpeg",
-  },
-  {
-    type: "image",
-    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.45.jpeg",
-  },
-  {
-    type: "image",
-    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.48.jpeg",
-  },
-  {
-    type: "image",
-    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.50.jpeg",
-  },
-  {
-    type: "image",
-    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.51 (1).jpeg",
-  },
-  {
-    type: "image",
-    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.51.jpeg",
-  },
-  {
-    type: "image",
-    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.52 (1).jpeg",
-  },
-  {
-    type: "image",
-    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.52.jpeg",
-  },
-  {
-    type: "image",
-    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.53.jpeg",
-  },
-  {
-    type: "image",
-    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.54.jpeg",
-  },
-  {
-    type: "image",
-    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.56.jpeg",
-  },
-  {
-    type: "image",
-    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.57 (1).jpeg",
-  },
-  {
-    type: "image",
-    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.57.jpeg",
-  },
-  {
-    type: "image",
-    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.58 (1).jpeg",
-  },
-  {
-    type: "image",
-    src: "/images/gallery/WhatsApp Image 2026-02-06 at 10.58.58.jpeg",
-  },
-  {
-    type: "video",
-    src: "/images/gallery/WhatsApp Video 2026-02-06 at 10.58.20.mp4",
-  },
-  {
-    type: "video",
-    src: "/images/gallery/WhatsApp Video 2026-02-06 at 10.58.22.mp4",
-  },
-  {
-    type: "video",
-    src: "/images/gallery/WhatsApp Video 2026-02-06 at 10.58.25.mp4",
-  },
-  {
-    type: "video",
-    src: "/images/gallery/WhatsApp Video 2026-02-06 at 10.58.26.mp4",
-  },
-  {
-    type: "video",
-    src: "/images/gallery/WhatsApp Video 2026-02-06 at 10.58.28.mp4",
-  },
-  {
-    type: "video",
-    src: "/images/gallery/WhatsApp Video 2026-02-06 at 10.58.29.mp4",
-  },
-  {
-    type: "video",
-    src: "/images/gallery/WhatsApp Video 2026-02-06 at 10.58.30.mp4",
-  },
-  {
-    type: "video",
-    src: "/images/gallery/WhatsApp Video 2026-02-06 at 10.58.31.mp4",
-  },
-  {
-    type: "video",
-    src: "/images/gallery/WhatsApp Video 2026-02-06 at 10.58.36.mp4",
-  },
-  {
-    type: "video",
-    src: "/images/gallery/WhatsApp Video 2026-02-06 at 10.58.38 (1).mp4",
-  },
-  {
-    type: "video",
-    src: "/images/gallery/WhatsApp Video 2026-02-06 at 10.58.38.mp4",
-  },
-  {
-    type: "video",
-    src: "/images/gallery/WhatsApp Video 2026-02-06 at 10.58.40.mp4",
-  },
-  {
-    type: "video",
-    src: "/images/gallery/WhatsApp Video 2026-02-06 at 10.58.42.mp4",
-  },
-  {
-    type: "video",
-    src: "/images/gallery/WhatsApp Video 2026-02-06 at 10.58.47.mp4",
-  },
-  {
-    type: "video",
-    src: "/images/gallery/WhatsApp Video 2026-02-06 at 10.58.50.mp4",
-  },
-];
+// Hand-picked preview images (indices into galleryItems — images only, no videos)
+const previewIndices = [0, 1, 2, 3, 4, 5, 6, 7];
+const previewItems = previewIndices
+  .map((i) => galleryItems[i])
+  .filter((item) => item && item.type === "image");
+
 export function HomePage() {
   const navigate = useNavigate();
   const [statsRef, statsVisible] = useIntersectionObserver({
     threshold: 0.1,
     rootMargin: "0px 0px -100px 0px",
+  });
+  const [galleryRef, galleryVisible] = useIntersectionObserver({
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px",
   });
 
   const handleCategoryClick = (categoryId) => {
@@ -369,9 +137,16 @@ export function HomePage() {
         </div>
       </div>
 
-      <div className="bg-white py-24 border-t-8 border-black">
+      {/* Gallery Preview */}
+      <div className="bg-white py-24 border-t-8 border-black overflow-hidden" ref={galleryRef}>
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 bg-orange-500/10 border-2 border-orange-500 px-4 py-2 mb-6 transform rotate-1">
+              <Camera className="w-4 h-4 text-orange-500" />
+              <span className="font-mono text-orange-500 text-sm font-bold uppercase tracking-wider">
+                Sneak Peek
+              </span>
+            </div>
             <h2 className="font-display text-5xl md:text-6xl font-bold text-black mb-4 tracking-wide">
               GALLERY <span className="text-orange-500 scribble">SHOWCASE</span>
             </h2>
@@ -380,35 +155,55 @@ export function HomePage() {
             </p>
           </div>
 
-          <div className="columns-1 sm:columns-2 lg:columns-3 gap-6">
-            {galleryItems.map((item, index) => (
-              <div
-                key={`${item.type}-${index}`}
-                className="mb-6 break-inside-avoid border-4 border-black bg-indie-cream shadow-[6px_6px_0_rgba(0,0,0,1)]"
-              >
-                {item.type === "image" ? (
+          {/* Preview Grid — 2 rows, asymmetric bento layout */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
+            {previewItems.slice(0, 8).map((item, index) => {
+              // Make first and last items span 2 columns on desktop for visual interest
+              const isFeature = index === 0 || index === 5;
+              return (
+                <div
+                  key={`preview-${index}`}
+                  className={`group relative overflow-hidden border-3 border-black bg-white shadow-[4px_4px_0_rgba(0,0,0,1)] hover:shadow-[6px_6px_0_rgba(0,217,255,1)] hover:-translate-y-1 transition-all duration-500 ${
+                    isFeature ? "md:col-span-2 md:row-span-2" : ""
+                  }`}
+                  style={{
+                    opacity: galleryVisible ? 1 : 0,
+                    transform: galleryVisible
+                      ? `rotate(${index % 2 === 0 ? -0.3 : 0.3}deg) translateY(0)`
+                      : `rotate(0deg) translateY(30px)`,
+                    transition: `all 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${index * 0.08}s`,
+                  }}
+                >
                   <img
                     src={item.src}
-                    alt="Gallery item"
+                    alt="Gallery preview"
                     loading="lazy"
-                    className="w-full h-auto block"
+                    className={`w-full h-full object-cover block transition-transform duration-700 group-hover:scale-110 ${
+                      isFeature ? "aspect-square" : "aspect-[4/3]"
+                    }`}
                   />
-                ) : (
-                  <video
-                    src={item.src}
-                    muted
-                    loop
-                    autoPlay
-                    playsInline
-                    preload="metadata"
-                    onLoadedMetadata={(e) => {
-                      e.currentTarget.playbackRate = 2;
-                    }}
-                    className="w-full h-auto block"
-                  />
-                )}
-              </div>
-            ))}
+                  {/* Gradient overlay on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
+              );
+            })}
+          </div>
+
+          {/* View All CTA */}
+          <div className="text-center mt-14">
+            <Link
+              to="/gallery"
+              className="group inline-flex items-center gap-3 bg-black text-white px-10 py-5 font-mono text-lg font-bold uppercase tracking-wider border-3 border-black shadow-[5px_5px_0_rgba(0,217,255,1)] hover:shadow-[3px_3px_0_rgba(0,217,255,1)] hover:translate-x-1 hover:translate-y-1 transition-all duration-200"
+            >
+              <span>View Full Gallery</span>
+              <span className="inline-flex items-center justify-center w-8 h-8 bg-cyan-400 text-black text-sm font-bold border-2 border-black">
+                {galleryItems.length}
+              </span>
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
+            </Link>
+            <p className="font-mono text-gray-500 text-sm mt-4">
+              {galleryItems.filter(i => i.type === "image").length} photos &amp; {galleryItems.filter(i => i.type === "video").length} videos
+            </p>
           </div>
         </div>
       </div>

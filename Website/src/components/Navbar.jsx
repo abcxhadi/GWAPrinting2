@@ -54,6 +54,12 @@ export function Navbar({ scrolled }) {
             >
               contact
             </Link>
+            <Link
+              to="/gallery"
+              className="font-mono text-sm uppercase tracking-wider text-black hover:text-cyan-500 transition-colors font-bold border-b-2 border-transparent hover:border-cyan-500"
+            >
+              gallery
+            </Link>
 
             <Link
               to="/quote"
@@ -108,6 +114,13 @@ export function Navbar({ scrolled }) {
               className="block w-full text-left py-2 text-black font-bold uppercase text-sm hover:text-cyan-500 font-mono"
             >
               contact
+            </Link>
+            <Link
+              to="/gallery"
+              onClick={handleLinkClick}
+              className="block w-full text-left py-2 text-black font-bold uppercase text-sm hover:text-cyan-500 font-mono"
+            >
+              gallery
             </Link>
             <Link
               to="/quote"

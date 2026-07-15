@@ -8,6 +8,7 @@ import { ProductsPage } from "./pages/ProductsPage";
 import { QuotePage } from "./pages/QuotePage";
 import { AboutPage } from "./pages/AboutPage";
 import { ContactPage } from "./pages/ContactPage";
+import { GalleryPage } from "./pages/GalleryPage";
 
 function App() {
   const scrolled = useScroll();
@@ -27,6 +28,7 @@ function App() {
           <Route path="/quote" element={<QuotePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/gallery" element={<GalleryPage />} />
         </Routes>
       </main>
       <Footer />
