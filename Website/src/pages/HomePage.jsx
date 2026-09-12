@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ChevronDown, Sparkles, Zap, ArrowRight, Camera } from "lucide-react";
+import { ChevronDown, Sparkles, Zap, ArrowRight, Camera, ShoppingCart, Check } from "lucide-react";
 import { categories } from "../data/products";
 import { galleryItems } from "../data/gallery";
 import { AnimatedCounter } from "../components/AnimatedCounter";
 import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
+import { useCart } from "../context/CartContext";
 
 // Hand-picked preview images (indices into galleryItems — images only, no videos)
 const previewIndices = [0, 1, 2, 3, 4, 5, 6, 7];
@@ -14,6 +15,17 @@ const previewItems = previewIndices
 
 export function HomePage() {
   const navigate = useNavigate();
+  const { addToCart, openCart } = useCart();
+  // Per-card "Added!" flash: { [cardId]: boolean }
+  const [addedMap, setAddedMap] = useState({});
+
+  const handleAddToCart = useCallback((card) => {
+    // Build a minimal product-like object for the cart
+    addToCart({ id: card.id, name: card.name, image: card.image, intermediateCategoryId: card.subcat });
+    setAddedMap((prev) => ({ ...prev, [card.id]: true }));
+    setTimeout(() => setAddedMap((prev) => ({ ...prev, [card.id]: false })), 1500);
+  }, [addToCart]);
+
   const [statsRef, statsVisible] = useIntersectionObserver({
     threshold: 0.1,
     rootMargin: "0px 0px -100px 0px",
@@ -29,14 +41,17 @@ export function HomePage() {
 
   return (
     <div className="pt-0 font-sans font-bold">
-      <div className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#14A4E6] to-[#2F67EA]">
-        <div className="absolute inset-0">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-cyan-500/20 rounded-full blur-3xl animate-pulse opacity-50"></div>
-          <div
-            className="absolute bottom-20 right-10 w-96 h-96 bg-orange-500/20 rounded-full blur-3xl opacity-50 animate-pulse"
-            style={{ animationDelay: "1s" }}
-          ></div>
-        </div>
+      <div
+        className="relative min-h-screen flex items-center justify-center overflow-hidden"
+        style={{
+          backgroundImage: "url('/hero.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        {/* Dark overlay for text legibility */}
+        <div className="absolute inset-0 bg-black/55" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 text-center py-32">
           <div className="inline-flex items-center space-x-3 bg-orange-500/20 border-2 border-purple px-6 py-3 mb-8 backdrop-blur-sm transform -rotate-2">
@@ -47,10 +62,7 @@ export function HomePage() {
           </div>
 
           <h1 className="font-display text-6xl md:text-8xl font-bold mb-8 leading-none">
-            <span className="text-white block mb-4">TRANSFORM YOUR</span>
-            <span className="text-cyan-400 block text-7xl md:text-9xl glitch">
-              VISION
-            </span>
+            <span className="text-white block mb-4">TRANSFORM YOUR VISION</span>
             <span className="text-white block text-5xl md:text-7xl mt-4">
               INTO <span className="text-cyan-400 scribble">REALITY</span>
             </span>
@@ -95,50 +107,256 @@ export function HomePage() {
 
       <div className="bg-indie-cream py-24 border-t-8 border-black relative torn-edge">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-20">
-            <h2 className="font-display text-5xl md:text-6xl font-bold text-black mb-4 tracking-wide">
-              WHAT CAN WE <span className="text-cyan-500 scribble">CREATE</span>
-              ?
-            </h2>
-            <p className="text-gray-700 text-lg font-mono">
-              Choose from our extensive range of print services
-            </p>
+          {/* Section Header */}
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-16">
+            <div>
+              <div className="inline-flex items-center gap-2 bg-cyan-500/10 border-2 border-cyan-500 px-4 py-1.5 mb-4 transform -rotate-1">
+                <span className="font-mono text-cyan-600 text-xs font-bold uppercase tracking-wider">
+                  Our Catalog
+                </span>
+              </div>
+              <h2 className="font-display text-5xl md:text-7xl font-bold text-black tracking-wide leading-none">
+                PROD<span className="text-cyan-500 scribble">UCTS</span>
+              </h2>
+            </div>
+            <Link
+              to="/products"
+              className="group inline-flex items-center gap-2 bg-black text-white px-6 py-3 font-mono text-sm font-bold uppercase tracking-wider border-3 border-black shadow-[4px_4px_0_rgba(0,217,255,1)] hover:shadow-[2px_2px_0_rgba(0,217,255,1)] hover:translate-x-0.5 hover:translate-y-0.5 transition-all duration-200 self-start sm:self-auto"
+            >
+              <span>View All Products</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {categories.map((cat, index) => (
-              <button
-                key={cat.id}
-                onClick={() => handleCategoryClick(cat.id)}
-                className="group bg-white p-8 border-4 border-black hover:border-cyan-500 transition-all duration-300 shadow-[6px_6px_0_rgba(0,0,0,1)] hover:shadow-[8px_8px_0_rgba(0,217,255,1)] hover:-translate-y-1"
-                style={{
-                  transform:
-                    index % 2 === 0 ? "rotate(-0.5deg)" : "rotate(0.5deg)",
-                }}
+          {/* ── Offset Printed Products Sub-section ── */}
+          <div className="mb-16">
+            {/* Sub-section header */}
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-3">
+                <span className="text-3xl">🖨️</span>
+                <div>
+                  <h3 className="font-display text-2xl md:text-3xl font-bold text-black tracking-wide">
+                    OFFSET PRINTED PRODUCTS
+                  </h3>
+                  <p className="font-mono text-gray-500 text-xs mt-0.5">
+                    High-quality traditional offset printing
+                  </p>
+                </div>
+              </div>
+              <Link
+                to="/products?category=offset-printed-products"
+                className="group hidden sm:inline-flex items-center gap-2 font-mono text-sm font-bold text-black border-2 border-black px-4 py-2 hover:bg-black hover:text-cyan-400 transition-all duration-200 shadow-[3px_3px_0_rgba(0,0,0,1)] hover:shadow-[1px_1px_0_rgba(0,0,0,1)] hover:translate-x-0.5 hover:translate-y-0.5"
               >
-                <div className="text-6xl mb-6 group-hover:scale-110 transition-transform duration-300 grayscale group-hover:grayscale-0">
-                  {cat.icon}
+                Explore All
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
+
+            {/* Product cards — horizontal scroll on mobile, 4-col grid on desktop */}
+            <div
+              className="flex gap-5 overflow-x-auto pb-4 sm:pb-0 sm:grid sm:grid-cols-4 sm:overflow-visible snap-x snap-mandatory sm:snap-none
+                            [&::-webkit-scrollbar]:h-1.5 [&::-webkit-scrollbar-track]:bg-black/10 [&::-webkit-scrollbar-thumb]:bg-black/40"
+            >
+              {[
+                {
+                  id: "matt-lamination-350gsm",
+                  name: "Business Card – Matt Lamination",
+                  subcat: "Business Cards",
+                  image:
+                    "/images/offsetPrinting/Business Cards/matt-lamination-350gsm.png",
+                  badge: "🖨️",
+                },
+                {
+                  id: "brochure-b4-(glossy-paper-170gsm)",
+                  name: "Brochure B4 – Glossy 170gsm",
+                  subcat: "Brochures",
+                  image:
+                    "/images/offsetPrinting/Brochures/brochure-b4-(glossy-paper-170gsm).png",
+                  badge: "📰",
+                },
+                {
+                  id: "flyer-real-size-(glossy-paper-170gsm)",
+                  name: "Flyer Real Size – Glossy 170gsm",
+                  subcat: "Flyers",
+                  image:
+                    "/images/offsetPrinting/Flyers/flyer-real-size-(glossy-paper-170gsm).png",
+                  badge: "🪶",
+                },
+                {
+                  id: "spot-uv-matt-lamination-400gsm",
+                  name: "Premium BC – Spot UV Matt Lam.",
+                  subcat: "Premium Business Cards",
+                  image:
+                    "/images/offsetPrinting/Premium Business Cards/spot-uv-matt-lamination-400gsm.png",
+                  badge: "💎",
+                },
+              ].map((product) => (
+                <div
+                  key={product.id}
+                  className="group flex-shrink-0 w-56 sm:w-auto bg-white border-4 border-black hover:border-cyan-500 overflow-hidden transition-all duration-300 snap-start"
+                >
+                  <div className="relative bg-indie-cream h-56 flex items-center justify-center">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      loading="lazy"
+                      className="object-cover w-full h-full max-w-full block group-hover:scale-110 transition-transform duration-300"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h3 className="font-display text-xl font-bold text-black mb-2 group-hover:text-cyan-500 transition-colors tracking-wide">
+                      {product.name.toUpperCase()}
+                    </h3>
+                    <p className="font-mono text-[10px] text-gray-600 mb-4 uppercase tracking-wide">
+                      {product.subcat}
+                    </p>
+                    <button
+                      onClick={() => handleAddToCart(product)}
+                      className={`font-mono w-full py-3 font-bold uppercase text-sm border-2 border-black flex items-center justify-center transition-all duration-200 ${
+                        addedMap[product.id]
+                          ? "bg-cyan-400 text-black border-cyan-400"
+                          : "bg-white text-black hover:bg-cyan-400 hover:border-cyan-400"
+                      }`}
+                    >
+                      {addedMap[product.id] ? (
+                        <><Check className="mr-2 h-4 w-4" /> Added!</>
+                      ) : (
+                        <><ShoppingCart className="mr-2 h-4 w-4" /> Add to Cart</>
+                      )}
+                    </button>
+                  </div>
                 </div>
-                <h3 className="font-display text-2xl font-bold text-black mb-3 group-hover:text-cyan-500 transition-colors tracking-wide">
-                  {cat.name.toUpperCase()}
-                </h3>
-                <p className="font-mono text-gray-600 text-sm mb-4">
-                  {cat.description}
-                </p>
-                <div className="font-mono flex items-center text-sm text-gray-500 group-hover:text-cyan-500 transition-colors">
-                  <span className="font-bold">
-                    {cat.subcategories.length} OPTIONS
-                  </span>
-                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-2 transition-transform" />
+              ))}
+            </div>
+
+            {/* Mobile-only explore link */}
+            <div className="mt-4 sm:hidden">
+              <Link
+                to="/products?category=offset-printed-products"
+                className="inline-flex items-center gap-2 font-mono text-sm font-bold text-black border-2 border-black px-4 py-2 hover:bg-black hover:text-cyan-400 transition-all duration-200"
+              >
+                Explore All Offset Products
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </div>
+
+          {/* ── Other Printing & Specialty Services Sub-section ── */}
+          <div>
+            {/* Sub-section header */}
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-3">
+                <span className="text-3xl">✨</span>
+                <div>
+                  <h3 className="font-display text-2xl md:text-3xl font-bold text-black tracking-wide">
+                    OTHER PRINTING & SPECIALTY
+                  </h3>
+                  <p className="font-mono text-gray-500 text-xs mt-0.5">
+                    Apparel, signage, gifts & more
+                  </p>
                 </div>
-              </button>
-            ))}
+              </div>
+              <Link
+                to="/products?category=other-printing-specialty-services"
+                className="group hidden sm:inline-flex items-center gap-2 font-mono text-sm font-bold text-black border-2 border-black px-4 py-2 hover:bg-black hover:text-orange-400 transition-all duration-200 shadow-[3px_3px_0_rgba(0,0,0,1)] hover:shadow-[1px_1px_0_rgba(0,0,0,1)] hover:translate-x-0.5 hover:translate-y-0.5"
+              >
+                Explore All
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
+
+            {/* Product cards — horizontal scroll on mobile, 4-col grid on desktop */}
+            <div
+              className="flex gap-5 overflow-x-auto pb-4 sm:pb-0 sm:grid sm:grid-cols-4 sm:overflow-visible snap-x snap-mandatory sm:snap-none
+                            [&::-webkit-scrollbar]:h-1.5 [&::-webkit-scrollbar-track]:bg-black/10 [&::-webkit-scrollbar-thumb]:bg-black/40"
+            >
+              {[
+                {
+                  id: "t-shirts",
+                  name: "T-Shirts",
+                  subcat: "Apparel & Accessories",
+                  image: "/images/t-shirts.jpg",
+                  badge: "👚",
+                },
+                {
+                  id: "flags",
+                  name: "Flags",
+                  subcat: "Signage & Event Displays",
+                  image: "/images/flags.jpg",
+                  badge: "📍",
+                },
+                {
+                  id: "calendars",
+                  name: "Calendars",
+                  subcat: "Gifts & Promotional",
+                  image: "/images/calendars.jpg",
+                  badge: "🎁",
+                },
+                {
+                  id: "flex-printing",
+                  name: "Flex Printing",
+                  subcat: "Marketing Materials",
+                  image: "/images/flex-printing.jpg",
+                  badge: "📈",
+                },
+              ].map((product) => (
+                <div
+                  key={product.id}
+                  className="group flex-shrink-0 w-56 sm:w-auto bg-white border-4 border-black hover:border-cyan-500 overflow-hidden transition-all duration-300 snap-start"
+                >
+                  <div className="relative bg-indie-cream h-56 flex items-center justify-center">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      loading="lazy"
+                      className="object-cover w-full h-full max-w-full block group-hover:scale-110 transition-transform duration-300"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h3 className="font-display text-xl font-bold text-black mb-2 group-hover:text-cyan-500 transition-colors tracking-wide">
+                      {product.name.toUpperCase()}
+                    </h3>
+                    <p className="font-mono text-[10px] text-gray-600 mb-4 uppercase tracking-wide">
+                      {product.subcat}
+                    </p>
+                    <button
+                      onClick={() => handleAddToCart(product)}
+                      className={`font-mono w-full py-3 font-bold uppercase text-sm border-2 border-black flex items-center justify-center transition-all duration-200 ${
+                        addedMap[product.id]
+                          ? "bg-cyan-400 text-black border-cyan-400"
+                          : "bg-white text-black hover:bg-cyan-400 hover:border-cyan-400"
+                      }`}
+                    >
+                      {addedMap[product.id] ? (
+                        <><Check className="mr-2 h-4 w-4" /> Added!</>
+                      ) : (
+                        <><ShoppingCart className="mr-2 h-4 w-4" /> Add to Cart</>
+                      )}
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Mobile-only explore link */}
+            <div className="mt-4 sm:hidden">
+              <Link
+                to="/products?category=other-printing-specialty-services"
+                className="inline-flex items-center gap-2 font-mono text-sm font-bold text-black border-2 border-black px-4 py-2 hover:bg-black hover:text-orange-400 transition-all duration-200"
+              >
+                Explore All Specialty Products
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Gallery Preview */}
-      <div className="bg-white py-24 border-t-8 border-black overflow-hidden" ref={galleryRef}>
+      <div
+        className="bg-white py-24 border-t-8 border-black overflow-hidden"
+        ref={galleryRef}
+      >
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-orange-500/10 border-2 border-orange-500 px-4 py-2 mb-6 transform rotate-1">
@@ -202,7 +420,9 @@ export function HomePage() {
               <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
             </Link>
             <p className="font-mono text-gray-500 text-sm mt-4">
-              {galleryItems.filter(i => i.type === "image").length} photos &amp; {galleryItems.filter(i => i.type === "video").length} videos
+              {galleryItems.filter((i) => i.type === "image").length} photos
+              &amp; {galleryItems.filter((i) => i.type === "video").length}{" "}
+              videos
             </p>
           </div>
         </div>

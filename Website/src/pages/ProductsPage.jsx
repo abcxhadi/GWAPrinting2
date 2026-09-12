@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { ArrowRight, Settings } from "lucide-react";
+import { ArrowRight, Settings, ShoppingCart, Check } from "lucide-react";
 import { categories, sampleProducts } from "../data/products";
+import { useCart } from "../context/CartContext";
 
 const normalizeSearchText = (value) =>
   value
@@ -54,8 +55,16 @@ export function ProductsPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [showMobileFilters, setShowMobileFilters] = useState(false);
   const productsPerPage = 9;
-  // This is a placeholder for future functionality, as the detail page was not implemented
   const [selectedProduct, setSelectedProduct] = useState(null);
+  // Per-card "Added!" flash state: { [productId]: boolean }
+  const [addedMap, setAddedMap] = useState({});
+  const { addToCart } = useCart();
+
+  const handleAddToCart = useCallback((product) => {
+    addToCart(product);
+    setAddedMap((prev) => ({ ...prev, [product.id]: true }));
+    setTimeout(() => setAddedMap((prev) => ({ ...prev, [product.id]: false })), 1500);
+  }, [addToCart]);
 
   // Effect to synchronize state with URL query parameters
   useEffect(() => {
@@ -450,11 +459,18 @@ export function ProductsPage() {
                     )}
 
                     <button
-                      onClick={() => handleProductClick(product)}
-                      className="font-mono w-full bg-black text-white py-3 font-bold uppercase text-sm hover:bg-cyan-500 hover:text-black transition-colors border-2 border-black flex items-center justify-center"
+                      onClick={() => handleAddToCart(product)}
+                      className={`font-mono w-full py-3 font-bold uppercase text-sm border-2 border-black flex items-center justify-center transition-all duration-200 ${
+                        addedMap[product.id]
+                          ? "bg-cyan-400 text-black border-cyan-400"
+                          : "bg-white text-black hover:bg-cyan-400 hover:border-cyan-400"
+                      }`}
                     >
-                      Get Quote
-                      <ArrowRight className="ml-2 h-4 w-4" />
+                      {addedMap[product.id] ? (
+                        <><Check className="mr-2 h-4 w-4" /> Added!</>
+                      ) : (
+                        <><ShoppingCart className="mr-2 h-4 w-4" /> Add to Cart</>
+                      )}
                     </button>
                   </div>
                 </div>
