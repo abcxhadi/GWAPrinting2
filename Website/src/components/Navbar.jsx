@@ -28,6 +28,7 @@ export function Navbar({ scrolled }) {
       className={`fixed w-full top-0 z-50 transition-all duration-300 border-b-4 border-black ${
         scrolled ? "bg-white shadow-2xl" : "bg-white/95 backdrop-blur-sm"
       }`}
+      style={{ paddingTop: "env(safe-area-inset-top)" }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20">
